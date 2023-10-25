@@ -6,7 +6,9 @@ on:
 
   # any push will trigger this workflow
 
-- push
+ push:
+    branches: 
+        - 'v[0-9]+.[0-9]+'
 
  
 
@@ -28,3 +30,21 @@ jobs:
           format: 'table'
           output: 'trivy-results.txt'
           severity: 'CRITICAL'
+
+      - uses: actions/checkout@v2
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env: 
+          SLACK_WEBHOOK: ${{ secrets.HUANG_YONGFEI }}
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+            SLACK_CHANNEL: general
+            SLACK_COLOR: ${{ job.status }} 
+            SLACK_ICON: https://github.com/rtCamp.png?size=48
+            SLACK_MESSAGE: 'Post Content :rocket:'
+            SLACK_TITLE: Post Title
+            SLACK_USERNAME: CICD
+            SLACK_WEBHOOK: ${{ secrets.HUANG_YONGFEI }}
+          
