@@ -73,6 +73,8 @@ jobs:
 
       - name: cosign-installer
         uses: sigstore/cosign-installer@v3.1.2
+        with: 
+            cosign-release: v2.2.0
 
         # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
       - name: Sign image with a key
