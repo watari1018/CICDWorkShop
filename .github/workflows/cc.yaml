@@ -30,21 +30,13 @@ jobs:
           output: 'trivy-results.txt'
           severity: 'CRITICAL'
 
-
-      - name: Read Trivy Report
-        id: read_report
-        run: |
-            echo ${{ steps.Report.outputs.trivy-results.txt }} > trivy-results.txt
-        shell: bash
-        
-      - uses: MeilCli/slack-upload-file@v3
+      - name: Upload Trivy scan results to Slack
+        uses: MeilCli/slack-upload-file@v3
         with:
-              slack_token: ${{ secrets.SLACKTOKEN }}
-              channel_id: ${{ secrets.CHANNELID }}
-              file_path: 'trivy-results.txt'
-              initial_comment: 'Trivy scan report is attached.'
-
-
+            slack_token: ${{ secrets.SLACKTOKEN }}
+            channel_id: ${{ secrets.CHANNELID }}
+            content: './trivy-results.txt'
+            initial_comment: 'Trivy Scan Results'
 
       - uses: MeilCli/slack-upload-file@v3
         with:
