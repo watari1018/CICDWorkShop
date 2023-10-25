@@ -41,13 +41,13 @@ jobs:
             SLACK_CHANNEL: general
             SLACK_COLOR: ${{ job.status }} 
             SLACK_ICON: https://github.com/rtCamp.png?size=48
-            SLACK_TITLE: dd
+            SLACK_TITLE: Information
             SLACK_MESSAGE: |
               *Name*:HuangYongFei
               *Matriculation number*:A028597
               *Email*:E1221783@u.nus.edu
               *Repository*:https://github.com/${{ github.action_repository }}/CICDWorkShop/tree/v1.3
-              *Docker Hub URL*:
+              *Docker Hub URL*:https://hub.docker.com/repository/docker/watari1018/cicd_workshop1/general
  
             SLACK_USERNAME: Huang YongFei
             SLACK_WEBHOOK: ${{ secrets.HUANG_YONGFEI }}
@@ -69,5 +69,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: user/hyf:${{github.sha}}
+          tags: watari1018/cicd_workshop1:${{github.sha}}
           
