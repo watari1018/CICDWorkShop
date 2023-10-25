@@ -36,13 +36,7 @@ jobs:
             slack_token: ${{ secrets.SLACKTOKEN }}
             channel_id: ${{ secrets.CHANNELID }}
             content: './trivy-results.txt'
-            initial_comment: 'Trivy Scan Results'
-
-      - uses: MeilCli/slack-upload-file@v3
-        with:
-            slack_token: ${{ secrets.SLACKTOKEN }}
-            channel_id: ${{ secrets.CHANNELID }}
-            content: 'file content'
+            file_name: 'trivy-results.txt'
             initial_comment: 'post by slack-upload-file'
 
       - uses: actions/checkout@v2
