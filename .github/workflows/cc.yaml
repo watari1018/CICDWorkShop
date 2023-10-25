@@ -33,7 +33,7 @@ jobs:
       - name: Upload Trivy scan results to Slack
         uses: MeilCli/slack-upload-file@v3
         with:
-            slack_token: ${{ secrets.SLACKTOKEN }}
+            slack_token: ${{ secrets.BOTTOKEN }}
             channel_id: ${{ secrets.CHANNELID }}
             content: './trivy-results.txt'
             file_name: 'trivy-results.txt'
