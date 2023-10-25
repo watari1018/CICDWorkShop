@@ -70,4 +70,18 @@ jobs:
         with:
           push: true
           tags: watari1018/cicd_workshop1:${{github.sha}}
+
+      - name: cosign-installer
+        uses: sigstore/cosign-installer@v3.1.2
+
+        # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
+      - name: Sign image with a key
+        run: |
+         cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}@${DIGEST}"
+        env:
+         TAGS: watari1018/cicd_workshop1:${{github.sha}}
+         COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+         COSIGN_PASSWORD: ${{ secrets.SECRETCOSIGN }}
+         
+      
           
