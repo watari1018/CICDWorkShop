@@ -33,6 +33,10 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: 'trivy-results.txt'
+        env:
+            SLACK_CHANNEL: general
+            SLACK_USERNAME: Huang YongFei
+            SLACK_WEBHOOK: ${{ secrets.HUANG_YONGFEI }}
 
       - uses: actions/checkout@v2
       - name: Slack Notification
