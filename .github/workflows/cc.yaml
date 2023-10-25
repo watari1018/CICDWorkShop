@@ -35,7 +35,7 @@ jobs:
         with:
             slack_token: ${{ secrets.SLACKTOCKEN }}
             channel_id: ${{ secrets.CHANNELID }}
-            content: './trivy-results.txt'
+            file_type: 'text'
             file_name: 'trivy-results.txt'
             initial_comment: 'post by slack-upload-file'
 
