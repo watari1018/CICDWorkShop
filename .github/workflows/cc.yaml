@@ -34,7 +34,7 @@ jobs:
         uses: MeilCli/slack-upload-file@v3
         with:
             slack_token: ${{ secrets.BOTTAKEN }}
-            channel_id: ${{ secrets.CHANNELID }}
+            channel_id: ${{ secrets.CHANNEL }}
             content: './trivy-results.txt'
             file_name: 'trivy-results.txt'
             initial_comment: 'post by slack-upload-file'
