@@ -35,14 +35,12 @@ jobs:
           name: scan-report
           path: D:\Desktop\CICD\fortunes\.github\workflows\trivy-results.txt
 
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
+      - uses: MeilCli/slack-upload-file@v3
         with:
-          sarif_file: 'trivy-results.txt'
-        env:
-            SLACK_CHANNEL: general
-            SLACK_USERNAME: Huang YongFei
-            SLACK_WEBHOOK: ${{ secrets.HUANG_YONGFEI }}
+            slack_token: ${{ secrets.SLACKTOKEN }}
+            channel_id: ${{ secrets.CHANNELID }}
+            content: 'file content'
+            initial_comment: 'post by slack-upload-file'
 
       - uses: actions/checkout@v2
       - name: Slack Notification
