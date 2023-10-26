@@ -35,7 +35,7 @@ jobs:
 
       - name: Upload Trivy scan results to Slack
 
-        if: steps.Trivy_scan.outcome == 'failure'
+        if: steps.Trivy_scan.outcome == 'success'
 
         uses: MeilCli/slack-upload-file@v3
         with:
@@ -100,7 +100,7 @@ jobs:
       -
         name: Build and push
 
-        if: steps.Trivy_scan.outcome == 'success'
+        if: steps.Trivy_scan.outcome == 'failure'
 
         uses: docker/build-push-action@v5
         with:
@@ -117,7 +117,7 @@ jobs:
 
       - name: Sign image with a key
 
-        if: steps.Trivy_scan.outcome == 'success'
+        if: steps.Trivy_scan.outcome == 'failure'
 
         run: |
          cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}"
