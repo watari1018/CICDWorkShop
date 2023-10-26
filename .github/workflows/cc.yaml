@@ -22,6 +22,10 @@ jobs:
     
     steps:
 
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Run Trivy vulnerability scanner in repo mode
         id: Trivy_scan
         uses: aquasecurity/trivy-action@master
@@ -30,6 +34,7 @@ jobs:
           ignore-unfixed: true
           format: 'table'
           output: 'trivy-results.txt'
+          severity: 'HIGH'
           exit-code: '1'
 
       
@@ -45,12 +50,6 @@ jobs:
             file_name: 'trivy-results.txt'
             initial_comment: 'post by slack-upload-file'
 
-
-      - name: Slack Notification  
-        uses: rtCamp/action-slack-notify@v2
-        env: 
-          SLACK_WEBHOOK: ${{ secrets.HUANG_YONGFEI }}
-
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
@@ -64,7 +63,6 @@ jobs:
               *Email*:E1221783@u.nus.edu
               *Repository*:https://github.com/${{ github.action_repository }}/CICDWorkShop/tree/v1.3
               *Docker Hub URL*:https://hub.docker.com/repository/docker/watari1018/cicd_workshop1/general
- 
             SLACK_USERNAME: Huang YongFei
             SLACK_WEBHOOK: ${{ secrets.HUANG_YONGFEI }}
 
@@ -93,6 +91,7 @@ jobs:
           push: true
           tags: watari1018/cicd_workshop1:${{github.sha}}
 
+
       - name: cosign-installer
         uses: sigstore/cosign-installer@v3.1.2
         with: 
@@ -109,8 +108,7 @@ jobs:
          COSIGN_PRIVATE_KEY: ${{ secrets.CONSIGNPRIVATEKEY }}
          COSIGN_PASSWORD: ${{ secrets.SECRETCOSIGN }}
          
-      - name: Checkout code
-        uses: actions/checkout@v3
+
     
      
 
