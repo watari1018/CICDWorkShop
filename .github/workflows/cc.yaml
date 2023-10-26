@@ -30,7 +30,7 @@ jobs:
           ignore-unfixed: true
           format: 'table'
           output: 'trivy-results.txt'
-          severity: 'HIGH'
+          severity: 'CRITICAL'
 
 
       - name: Upload Trivy scan results to Slack
