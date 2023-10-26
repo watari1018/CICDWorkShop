@@ -37,14 +37,7 @@ jobs:
           severity: 'HIGH'
           exit-code: '1'
 
-      - name: Upload Trivy scan results to Slack
-        uses: MeilCli/slack-upload-file@v3
-        if: failure()
-        with:
-            slack_token: ${{ secrets.SLACKTOCKEN }}
-            channel_id: ${{ secrets.CHANNELID }}
-            file_path: 'trivy-results.txt'
-            initial_comment: 'post by Huang yongfei'
+
 
             
       - name: Slack Notification
@@ -56,14 +49,19 @@ jobs:
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_TITLE: Information
           SLACK_MESSAGE: |
-            *Name*:HuangYongFei
-            *Matriculation number*:A0285971M
-            *Email*:E1221783@u.nus.edu
-            *Repository*:https://github.com/${{ github.action_repository }}/CICDWorkShop/tree/v1.3
-            *Docker Hub URL*:https://hub.docker.com/repository/docker/watari1018/cicd_workshop1/general
+            Scan failed-Huang Yongfei
+            Failed trivy scan, see uploaded report
           SLACK_USERNAME: Huang YongFei
           SLACK_WEBHOOK: ${{ secrets.HUANG_YONGFEI }}
 
+      - name: Upload Trivy scan results to Slack
+        uses: MeilCli/slack-upload-file@v3
+        if: failure()
+        with:
+            slack_token: ${{ secrets.SLACKTOCKEN }}
+            channel_id: ${{ secrets.CHANNELID }}
+            file_path: 'trivy-results.txt'
+            initial_comment: 'post by Huang yongfei'
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
