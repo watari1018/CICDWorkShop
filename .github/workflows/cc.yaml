@@ -37,14 +37,13 @@ jobs:
           severity: 'HIGH'
           exit-code: '1'
 
+          
       - name: Upload Trivy scan results to Slack
         uses: MeilCli/slack-upload-file@v3
         if: failure()
         with:
             slack_token: ${{ secrets.SLACKTOCKEN }}
             channel_id: ${{ secrets.CHANNELID }}
-            file_type: 'text'
-            file_name: 'trivy-results.txt'
             file_path: 'trivy-results.txt'
             initial_comment: 'post by slack-upload-file'
 
