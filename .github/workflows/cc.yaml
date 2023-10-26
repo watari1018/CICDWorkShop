@@ -34,7 +34,7 @@ jobs:
           ignore-unfixed: true
           format: 'table'
           output: 'trivy-results.txt'
-          severity: 'CRITICAL'
+          severity: 'HIGH'
           exit-code: '1'
 
       - name: Upload Trivy scan results to Slack
@@ -63,6 +63,7 @@ jobs:
             *Docker Hub URL*:https://hub.docker.com/repository/docker/watari1018/cicd_workshop1/general
           SLACK_USERNAME: Huang YongFei
           SLACK_WEBHOOK: ${{ secrets.HUANG_YONGFEI }}
+
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
