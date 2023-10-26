@@ -44,7 +44,7 @@ jobs:
         with:
             slack_token: ${{ secrets.SLACKTOCKEN }}
             channel_id: ${{ secrets.CHANNELID }}
-            file_path: '/${{ github.action_repository }}/CICDWorkShop/trivy-results.txt'
+            file_path: './trivy-results.txt'
             initial_comment: 'post by slack-upload-file'
 
             
