@@ -30,7 +30,6 @@ jobs:
           ignore-unfixed: true
           format: 'table'
           output: 'trivy-results.txt'
-          severity: 'HIGH'
           exit-code: '1'
 
       
