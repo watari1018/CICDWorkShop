@@ -31,7 +31,9 @@ jobs:
           format: 'table'
           output: 'trivy-results.txt'
           severity: 'HIGH'
-          exit-code: 1
+          exit-code: '1'
+
+      
 
 
       - name: Upload Trivy scan results to Slack
